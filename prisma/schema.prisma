@@ -6,10 +6,13 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = "postgresql://postgres:kyrie@localhost:5432/fruitApp?schema=sample"
 }
-
+// datasource db {
+  // provider = "mysql"
+  // url      = "mysql://janedoe:mypassword@localhost:3306/mydb"
+// }
 model Author {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -28,4 +31,19 @@ model Book {
   datePublished DateTime
   author        Author   @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId      Int
+}
+model Message {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email String 
+  phoneNumber String
+  message String
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  title String
+  price Int
+  image String
+  stock Int
 }

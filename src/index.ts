@@ -2,8 +2,8 @@ import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 
-import { authorRouter } from "./author/author.router";
-import { bookRouter } from "./book/book.router";
+import { messageRouter } from "./message/message.router";
+import { productRouter } from "./product/product.router";
 
 dotenv.config();
 
@@ -17,8 +17,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/authors", authorRouter);
-app.use("/api/books", bookRouter);
+app.use("/api/messages",messageRouter)
+app.use("/api/products", productRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
